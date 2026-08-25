@@ -103,6 +103,12 @@ public class BackupCodeFragment extends CryptoOperationFragment<BackupKeyringPar
             char[] backupCode = mBackupCode.getCharArray();
             for (int i = 0; i < codeDisplayText.length; i++) {
                 codeDisplayText[i].setText(backupCode, i * 5, 4);
+                codeDisplayText[i].setOnLongClickListener(v -> {
+                    ClipboardManager cm = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setPrimaryClip(ClipData.newPlainText("backup code", mBackupCode.toString()));
+                    Notify.create(getActivity(), R.string.snack_copied, Style.OK).show();
+                    return true;
+                });
             }
 
             // set background to null in TextViews - this will retain padding from EditText style!
