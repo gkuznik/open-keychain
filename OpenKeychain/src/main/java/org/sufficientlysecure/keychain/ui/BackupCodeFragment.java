@@ -106,7 +106,7 @@ public class BackupCodeFragment extends CryptoOperationFragment<BackupKeyringPar
                 codeDisplayText[i].setOnLongClickListener(v -> {
                     ClipboardManager cm = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setPrimaryClip(ClipData.newPlainText("backup code", mBackupCode.toString()));
-                    Notify.create(getActivity(), R.string.snack_copied, Style.OK).show();
+                    Notify.create(getActivity(), R.string.key_copied_to_clipboard, Style.OK).show();
                     return true;
                 });
             }
